@@ -684,7 +684,7 @@ function goBackToStep1(){
 }
 
 function handlePayMethod(){
-  var method = document.querySelector('input[name="payMethod"]:checked');
+  var method = document.querySelector('input[name=payMethod]:checked');
   if(!method)return;
   if(method.value==='qr'){
     document.getElementById('qrSection').style.display='block';
@@ -711,7 +711,7 @@ function handlePayMethod(){
 }
 
 function goToReview(){
-  var method = document.querySelector('input[name="payMethod"]:checked');
+  var method = document.querySelector('input[name=payMethod]:checked');
   if(!method){alert('Please select a payment method!');return;}
   if(method.value==='qr' && !slipData && !slipFile){
     alert('Please upload payment slip! · กรุณาอัปโหลดสลิป!');return;
@@ -731,7 +731,7 @@ function goBackToPayment(){
 
 function buildReview(){
   var html='';
-  var payMethod = (document.querySelector('input[name="payMethod"]:checked')||{}).value||'qr';
+  var payMethod = (document.querySelector('input[name=payMethod]:checked')||{}).value||'qr';
   participants.forEach(function(p,i){
     html+='<div class="review-card"><h3>👤 Participant '+(i+1)+'</h3>';
     html+='<div class="review-row"><span class="lbl">Upasakha · อุปสาขา · उपशाखा</span><span class="val">'+p.upasakha+'</span></div>';
@@ -915,7 +915,7 @@ function joinWhatsApp(){
   var msg='🎉 *Sivir 2026 Registration — Bangkok Sakha*\n';
   msg+='━━━━━━━━━━━━━━━━\n';
   msg+='📍 *Upasakha:* '+upa+'\n';
-  msg+='💳 *Payment:* '+(document.querySelector('input[name="payMethod"]:checked')||{value:''}).value==='qr'?'QR Pay':'Offline Cash';
+  msg+='💳 *Payment:* '+(document.querySelector('input[name=payMethod]:checked')||{value:''}).value==='qr'?'QR Pay':'Offline Cash';
   msg+='\n👥 *Participants:* '+participants.length+'\n';
   var wUpa=participants.length>0?participants[0].upasakha:'';
   var wFee=participants.length*getFeePerPerson(wUpa);
@@ -943,11 +943,10 @@ async function submitForm(){
   var btn=document.getElementById('submitBtn'),overlay=document.getElementById('loadingOverlay');
   btn.disabled=true;overlay.classList.add('active');
   try{
-    var whoType=(document.querySelector('input[name="whoType"]:checked')||{}).value||'group';
+    var whoType=(document.querySelector('input[name=whoType]:checked')||{}).value||'group';
     var upa = participants.length>0?participants[0].upasakha:'Unknown';
     var sheetTabOverride = whoType==='self'?'Individual':null;
-    var cfg = UPASAKHA_CONFIG[upa]||{prefix:'BKK'};
-    var payMethod = (document.querySelector('input[name="payMethod"]:checked')||{}).value||'cash';
+    var payMethod = (document.querySelector('input[name=payMethod]:checked')||{}).value||'cash';
     var fee = participants.length * getFeePerPerson(upa);
     var submittedAt = new Date().toLocaleString('th-TH');
     var sheetTab = sheetTabOverride || (upa + ' Upasakha');
@@ -974,6 +973,7 @@ async function submitForm(){
       if(slipB64){
         await fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},
           body:JSON.stringify({type:'payment_slip',sheetTab:sheetTab,whoType:whoType,upasakha:upa,parentName:participants[0].parentName||'',paymentSlipName:'slip.jpg',paymentSlipData:slipB64,totalFee:fee})});
+        await new Promise(function(r){setTimeout(r,2000);});
       }
     }
 
@@ -982,9 +982,16 @@ async function submitForm(){
       var p=participants[pi];
       var ppB64=dataUrlToB64(p.photo||'');
       var idB64=dataUrlToB64(p.idPhotoData||'');
-      if(ppB64||idB64){
+      if(ppB64){
         await fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},
-          body:JSON.stringify({type:'participant_photos',sheetTab:sheetTab,whoType:whoType,upasakha:upa,parentName:participants[0].parentName||'',participantIndex:pi,participantName:p.name||'',uniqueId:p.uniqueId,passportPhotoData:ppB64,idPhotoData:idB64})});
+          body:JSON.stringify({type:'participant_photos',sheetTab:sheetTab,whoType:whoType,upasakha:upa,parentName:participants[0].parentName||'',participantIndex:pi,participantName:p.name||'',uniqueId:p.uniqueId,passportPhotoData:ppB64,idPhotoData:''})});
+        // Wait 2s between requests
+        await new Promise(function(r){setTimeout(r,2000);});
+      }
+      if(idB64){
+        await fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},
+          body:JSON.stringify({type:'participant_photos',sheetTab:sheetTab,whoType:whoType,upasakha:upa,parentName:participants[0].parentName||'',participantIndex:pi,participantName:p.name||'',uniqueId:p.uniqueId,passportPhotoData:'',idPhotoData:idB64})});
+        await new Promise(function(r){setTimeout(r,2000);});
       }
     }
 

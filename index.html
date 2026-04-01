@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>8th Sivir 2026 — Bangkok Registration</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+:root{
+  --pink:#E05C8A;--pink-light:#FCE8F1;--pink-dark:#B03567;
+  --green:#3A8C4A;--green-light:#E6F5EA;
+  --gold:#D4900A;--gold-light:#FDF3DC;
+  --blue:#2B7BB9;--blue-light:#E5F2FC;
+  --bg:#FEF6FA;--white:#ffffff;
+  --text:#1C1C2E;--text-muted:#7B7B9A;
+  --border:rgba(224,92,138,0.22);
+  --radius:18px;--radius-sm:10px;
+  --shadow:0 4px 28px rgba(224,92,138,0.10);
+  --shadow-lg:0 8px 40px rgba(176,53,103,0.18);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;scroll-behavior:smooth;-webkit-tap-highlight-color:transparent;}
+
+.loading-overlay{position:fixed;inset:0;background:rgba(254,246,250,0.92);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;opacity:0;pointer-events:none;transition:opacity 0.3s;}
+.loading-overlay.active{opacity:1;pointer-events:all;}
+.spinner{width:52px;height:52px;border:4px solid var(--pink-light);border-top-color:var(--pink);border-radius:50%;animation:spin 0.8s linear infinite;margin-bottom:16px;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.loading-text{color:var(--pink-dark);font-size:15px;font-weight:600;}
+
+.header{background:linear-gradient(150deg,#E05C8A 0%,#B03567 55%,#7A1E47 100%);color:white;padding:2.5rem 1.5rem 4.5rem;text-align:center;position:relative;overflow:hidden;}
+.header::before{content:'';position:absolute;top:-60px;right:-60px;width:250px;height:250px;border-radius:50%;background:rgba(255,255,255,0.07);}
+.header::after{content:'';position:absolute;bottom:-80px;left:-40px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,0.05);}
+.header-flags{font-size:22px;letter-spacing:6px;margin-bottom:10px;}
+.header-org{font-size:11px;letter-spacing:0.15em;opacity:0.85;margin-bottom:10px;text-transform:uppercase;}
+.header-sub{font-size:16px;opacity:0.95;margin-bottom:4px;font-weight:700;}
+.header-sub2{font-family:'Noto Sans Thai',sans-serif;font-size:13px;opacity:0.75;margin-bottom:14px;}
+.header-badges{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;}
+.header-badge{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.35);border-radius:20px;padding:5px 16px;font-size:12px;font-weight:600;}
+
+.music-bar{background:linear-gradient(90deg,#7A1E47,#B03567);color:white;display:flex;align-items:center;gap:12px;padding:10px 16px;font-size:13px;font-weight:600;position:relative;overflow:hidden;}
+.music-bar::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 4px,rgba(255,255,255,0.04) 4px,rgba(255,255,255,0.04) 5px);}
+.music-icon{font-size:18px;animation:bounce 1s infinite alternate;}
+@keyframes bounce{from{transform:scale(1);}to{transform:scale(1.2);}}
+.music-info{flex:1;}
+.music-btn{background:rgba(255,255,255,0.2);border:none;border-radius:50%;width:34px;height:34px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;color:white;}
+.music-wave{display:flex;align-items:center;gap:2px;}
+.music-wave span{display:block;width:3px;background:rgba(255,255,255,0.7);border-radius:2px;animation:wave 0.8s ease-in-out infinite alternate;}
+.music-wave span:nth-child(1){height:6px}.music-wave span:nth-child(2){height:12px;animation-delay:0.1s}.music-wave span:nth-child(3){height:8px;animation-delay:0.2s}.music-wave span:nth-child(4){height:16px;animation-delay:0.15s}.music-wave span:nth-child(5){height:10px;animation-delay:0.3s}
+.music-wave.paused span{animation:none;height:4px!important;}
+@keyframes wave{from{transform:scaleY(0.5);}to{transform:scaleY(1);}}
+
+.wave-divider{background:#7A1E47;position:relative;height:50px;}
+.wave-divider svg{position:absolute;bottom:0;left:0;width:100%;height:100%;}
+.container{max-width:660px;margin:0 auto;padding:1.5rem 1rem 5rem;}
+
+.notice{background:var(--gold-light);border:1px solid rgba(212,144,10,0.3);border-radius:var(--radius-sm);padding:12px 16px;display:flex;gap:10px;margin-bottom:1.25rem;font-size:13px;color:#6B4700;line-height:1.6;}
+
+.section{background:var(--white);border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);padding:1.5rem;margin-bottom:1.25rem;animation:fadeUp 0.4s ease both;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.section-title{font-size:15px;font-weight:800;color:var(--pink-dark);display:flex;align-items:center;gap:10px;margin-bottom:1.25rem;padding-bottom:12px;border-bottom:2px solid var(--pink-light);}
+.section-icon{width:40px;height:40px;background:var(--pink-light);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.section-title-text .main{font-size:15px;font-weight:800;}
+.section-title-text .sub{font-size:11px;color:var(--text-muted);font-weight:400;margin-top:2px;}
+
+.field{margin-bottom:1.1rem;}
+.field:last-child{margin-bottom:0;}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+label{display:block;font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px;}
+label .req{color:var(--pink);margin-left:2px;}
+label .lsub{font-size:11px;color:var(--text-muted);font-weight:400;margin-left:4px;}
+input[type="text"],input[type="tel"],input[type="number"],textarea,select{width:100%;padding:14px 16px;border:2px solid var(--border);border-radius:var(--radius-sm);font-size:16px;font-family:'Nunito',sans-serif;color:var(--text);background:var(--white);transition:border-color 0.2s,box-shadow 0.2s;outline:none;appearance:none;-webkit-appearance:none;}
+input:focus,textarea:focus,select:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgba(224,92,138,0.12);}
+textarea{resize:vertical;min-height:80px;}
+input,select,textarea{font-size:16px!important;}
+
+/* STEPS */
+.steps-bar{display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;overflow-x:auto;padding:4px;}
+.step-item{display:flex;flex-direction:column;align-items:center;gap:4px;min-width:52px;}
+.step-circle{width:36px;height:36px;border-radius:50%;border:2px solid var(--border);background:white;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:var(--text-muted);transition:all 0.3s;}
+.step-item.active .step-circle{border-color:var(--pink);background:var(--pink);color:white;}
+.step-item.done .step-circle{border-color:var(--green);background:var(--green);color:white;}
+.step-label{font-size:10px;color:var(--text-muted);font-weight:700;text-align:center;max-width:52px;line-height:1.2;}
+.step-item.active .step-label{color:var(--pink-dark);}
+.step-connector{width:24px;height:2px;background:var(--border);margin-bottom:16px;flex-shrink:0;}
+.step-connector.done{background:var(--green);}
+
+/* PARTICIPANT CARDS */
+.participants-list{margin-bottom:1rem;}
+.participant-card{background:var(--pink-light);border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:12px 14px;display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.participant-card-info{flex:1;}
+.participant-card-id{font-size:11px;font-weight:800;color:var(--pink-dark);background:white;padding:2px 8px;border-radius:20px;border:1px solid var(--pink);display:inline-block;margin-bottom:4px;}
+.participant-card-name{font-weight:800;font-size:14px;color:var(--pink-dark);}
+.participant-card-meta{font-size:12px;color:var(--text-muted);margin-top:2px;}
+.participant-card-actions{display:flex;align-items:center;gap:2px;}
+.participant-card-edit{background:none;border:none;cursor:pointer;color:var(--blue);font-size:20px;padding:8px;border-radius:50%;}
+.participant-card-remove{background:none;border:none;cursor:pointer;color:var(--pink);font-size:20px;padding:8px;border-radius:50%;}
+.add-participant-btn{width:100%;padding:16px;background:white;border:2px dashed var(--pink);border-radius:var(--radius-sm);color:var(--pink-dark);font-weight:800;font-size:15px;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:8px;min-height:56px;touch-action:manipulation;}
+.add-participant-btn:hover{background:var(--pink-light);}
+
+/* FILE UPLOAD */
+.file-upload{border:2px dashed var(--border);border-radius:var(--radius);padding:1.5rem;text-align:center;cursor:pointer;transition:all 0.2s;background:#FDFAFE;position:relative;}
+.file-upload:hover{border-color:var(--pink);background:var(--pink-light);}
+.file-upload.has-file{border-color:var(--green);background:var(--green-light);border-style:solid;}
+.file-upload input[type="file"]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+.file-upload .upload-icon{font-size:32px;margin-bottom:8px;display:block;}
+.file-upload .upload-text{font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px;}
+.file-upload .upload-sub{font-size:11px;color:var(--text-muted);line-height:1.6;}
+.file-upload .upload-hint{font-size:11px;color:var(--text-muted);margin-top:4px;}
+.upload-options{display:flex;gap:8px;margin-top:8px;}
+.upload-opt-btn{flex:1;padding:12px 8px;border:2px solid var(--border);border-radius:10px;background:white;cursor:pointer;font-size:14px;font-weight:700;color:var(--pink-dark);transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:5px;min-height:48px;touch-action:manipulation;}
+.upload-opt-btn:hover{background:var(--pink-light);border-color:var(--pink);}
+.photo-preview{width:100px;height:100px;border-radius:50%;object-fit:cover;border:3px solid var(--pink);margin:10px auto;display:none;}
+.slip-preview-img{max-width:100%;max-height:200px;border-radius:10px;border:2px solid var(--green);margin:10px auto;display:none;object-fit:contain;}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(28,28,46,0.6);z-index:1000;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s;}
+.modal-overlay.active{opacity:1;pointer-events:all;}
+.modal-sheet{background:var(--white);border-radius:24px 24px 0 0;padding:20px;width:100%;max-width:660px;max-height:90vh;overflow-y:auto;transform:translateY(40px);transition:transform 0.3s;}
+.modal-overlay.active .modal-sheet{transform:translateY(0);}
+.modal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;padding-bottom:12px;border-bottom:2px solid var(--pink-light);}
+.modal-header h3{font-size:16px;font-weight:800;color:var(--pink-dark);}
+.modal-close{background:var(--pink-light);border:none;border-radius:50%;width:40px;height:40px;cursor:pointer;font-size:20px;color:var(--pink-dark);display:flex;align-items:center;justify-content:center;}
+.modal-divider{border-top:2px solid var(--pink-light);margin:1rem 0;padding-top:1rem;font-size:13px;font-weight:800;color:var(--pink-dark);}
+
+/* PAYMENT */
+.payment-options{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.5rem;}
+.payment-opt{position:relative;}
+.payment-opt input[type="radio"]{position:absolute;opacity:0;width:0;height:0;}
+.payment-opt label{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px 12px;border:2px solid var(--border);border-radius:var(--radius);cursor:pointer;text-align:center;transition:all 0.2s;background:var(--white);gap:8px;min-height:110px;}
+.payment-opt label .p-emoji{font-size:32px;}
+.payment-opt label .p-title{font-size:14px;font-weight:800;color:var(--text);}
+.payment-opt label .p-sub{font-size:11px;color:var(--text-muted);}
+.payment-opt input:checked+label{border-color:var(--pink);background:var(--pink-light);box-shadow:0 0 0 3px rgba(224,92,138,0.15);}
+.payment-opt input:checked+label .p-title{color:var(--pink-dark);}
+
+.qr-section{background:var(--white);border-radius:var(--radius);border:2px solid var(--gold);box-shadow:var(--shadow);padding:1.5rem;margin-bottom:1.25rem;text-align:center;}
+.qr-title{font-size:16px;font-weight:800;color:var(--gold);margin-bottom:6px;}
+.qr-sub{font-size:12px;color:var(--text-muted);margin-bottom:1rem;}
+.qr-amount{font-size:22px;font-weight:800;color:var(--gold);margin:10px 0;}
+.qr-note{font-size:13px;color:var(--text);line-height:1.8;background:var(--gold-light);border-radius:8px;padding:10px 14px;margin-bottom:1rem;}
+.upasakha-badge{display:inline-block;background:var(--pink-dark);color:white;padding:6px 18px;border-radius:20px;font-size:13px;font-weight:800;margin:8px 0;}
+
+.offline-section{background:var(--white);border-radius:var(--radius);border:2px solid var(--blue);box-shadow:var(--shadow);padding:1.5rem;margin-bottom:1.25rem;text-align:center;display:none;}
+.offline-title{font-size:16px;font-weight:800;color:var(--blue);margin-bottom:12px;}
+.offline-card{background:var(--blue-light);border-radius:12px;padding:16px;margin-bottom:12px;}
+.offline-upasakha{font-size:22px;font-weight:800;color:var(--blue);margin-bottom:8px;}
+.offline-info{font-size:13px;color:var(--text);line-height:1.8;}
+
+/* REVIEW */
+.review-screen{display:none;}
+.review-card{background:var(--white);border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);padding:1.25rem;margin-bottom:1rem;}
+.review-card h3{font-size:14px;font-weight:800;color:var(--pink-dark);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--pink-light);display:flex;gap:8px;align-items:center;}
+.review-row{display:flex;gap:8px;margin-bottom:8px;font-size:13px;}
+.review-row .lbl{color:var(--text-muted);min-width:110px;font-size:12px;font-weight:600;}
+.review-row .val{font-weight:700;flex:1;}
+.unique-id-badge{display:inline-block;background:var(--pink-dark);color:white;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:800;}
+
+/* BUTTONS */
+.btn-primary{width:100%;padding:17px;background:linear-gradient(135deg,var(--pink),var(--pink-dark));color:white;border:none;border-radius:var(--radius);font-size:17px;font-weight:800;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;box-shadow:0 4px 20px rgba(224,92,138,0.4);font-family:'Nunito',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px;min-height:56px;touch-action:manipulation;}
+.btn-primary:hover{transform:translateY(-2px);}
+.btn-primary:disabled{opacity:0.6;transform:none;cursor:not-allowed;}
+.btn-secondary{width:100%;padding:15px;background:white;color:var(--pink-dark);border:2px solid var(--pink);border-radius:var(--radius);font-size:15px;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;margin-top:12px;min-height:52px;touch-action:manipulation;}
+.btn-secondary:hover{background:var(--pink-light);}
+.btn-green{width:100%;padding:17px;background:linear-gradient(135deg,#25D366,#1EB859);color:white;border:none;border-radius:var(--radius);font-size:17px;font-weight:800;cursor:pointer;box-shadow:0 4px 20px rgba(37,211,102,0.35);font-family:'Nunito',sans-serif;display:flex;align-items:center;justify-content:center;gap:10px;margin-top:12px;min-height:56px;touch-action:manipulation;}
+
+/* SUCCESS */
+.success-screen{display:none;text-align:center;padding:3rem 1.5rem;background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow-lg);}
+.success-icon{font-size:80px;margin-bottom:20px;animation:pop 0.5s ease;}
+@keyframes pop{0%{transform:scale(0);}80%{transform:scale(1.15);}100%{transform:scale(1);}}
+.success-screen h2{font-size:26px;font-weight:800;color:var(--green);margin-bottom:12px;}
+.success-id-card{background:var(--pink-light);border:2px solid var(--pink);border-radius:12px;padding:16px;margin:16px 0;text-align:center;}
+.success-id-label{font-size:12px;color:var(--text-muted);margin-bottom:4px;}
+.success-id-value{font-size:24px;font-weight:800;color:var(--pink-dark);}
+
+/* WA FAB */
+.wa-fab{position:fixed;bottom:80px;right:18px;z-index:900;}
+.wa-fab-btn{width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#25D366,#128C7E);border:none;cursor:pointer;box-shadow:0 4px 20px rgba(37,211,102,0.45);display:flex;align-items:center;justify-content:center;font-size:28px;animation:pulse-wa 2s infinite;}
+@keyframes pulse-wa{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,0.45);}50%{box-shadow:0 4px 30px rgba(37,211,102,0.7);}}
+.wa-popup{position:fixed;bottom:148px;right:18px;z-index:950;background:white;border-radius:18px 18px 4px 18px;box-shadow:0 8px 40px rgba(0,0,0,0.18);width:290px;padding:16px;display:none;}
+.wa-popup.active{display:block;}
+.wa-popup-header{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.wa-popup-avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#25D366,#128C7E);display:flex;align-items:center;justify-content:center;font-size:22px;}
+.wa-popup-name{font-weight:800;font-size:14px;}
+.wa-popup-status{font-size:11px;color:var(--green);font-weight:600;}
+.wa-popup-msg{background:#DCF8C6;border-radius:12px 12px 12px 4px;padding:10px 12px;font-size:13px;line-height:1.5;margin-bottom:10px;}
+.wa-popup-close{position:absolute;top:10px;right:12px;background:none;border:none;cursor:pointer;font-size:18px;color:var(--text-muted);}
+.wa-popup-btn{width:100%;padding:9px;background:#25D366;color:white;border:none;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;}
+
+.footer{background:var(--text);color:rgba(255,255,255,0.6);text-align:center;padding:20px;font-size:12px;line-height:2;}
+.btn-primary,.btn-secondary,.btn-green,.upload-opt-btn,.add-participant-btn{touch-action:manipulation;}
+@media(max-width:540px){.field-row{grid-template-columns:1fr;}.payment-options{grid-template-columns:1fr 1fr;}}
+</style>
+</head>
+<body>
+
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="spinner"></div>
+  <div class="loading-text">Submitting... กำลังส่งข้อมูล... दर्ता हुँदैछ...</div>
+</div>
+
+<div class="header">
+  <div class="header-flags">🇳🇵 🙏 🇹🇭</div>
+  <div class="header-org">THAI NEPALI ASSOCIATION · Bangkok Sakha</div>
+  <div class="header-sub">8th Educational Camp (Sivir) 2026</div>
+  <div class="header-sub2">ค่ายการศึกษาครั้งที่ ๘ · आठौं शिक्षण शिविर २०२६</div>
+  <div class="header-badges">
+    <span class="header-badge">📅 9–15 April 2026</span>
+    <span class="header-badge">📍 Banse Camp, Ratchaburi</span>
+    <span class="header-badge">👧 Ages 12 &amp; above</span>
+    <span class="header-badge">💰 ฿1,500 / person</span>
+  </div>
+</div>
+
+<div class="music-bar">
+  <span class="music-icon">🎵</span>
+  <div class="music-info">
+    <div style="font-size:13px;font-weight:800;">Sivir Song 2026 · เพลงค่าย · शिविर गीत</div>
+    <div style="font-size:12px;opacity:0.85;">▶ Playing — Thai Nepali Association</div>
+  </div>
+  <div class="music-wave" id="musicWave"><span></span><span></span><span></span><span></span><span></span></div>
+  <button class="music-btn" id="musicToggle" onclick="toggleMusic()">⏸</button>
+</div>
+
+<div class="wave-divider">
+  <svg viewBox="0 0 1440 50" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,50 C360,0 1080,0 1440,50 L1440,50 L0,50 Z" fill="#FEF6FA"/>
+  </svg>
+</div>
+
+<div class="container">
+  <div class="steps-bar">
+    <div class="step-item active" id="step1"><div class="step-circle">1</div><div class="step-label">Type</div></div>
+    <div class="step-connector" id="conn1"></div>
+    <div class="step-item" id="step2"><div class="step-circle">2</div><div class="step-label">Participants</div></div>
+    <div class="step-connector" id="conn2"></div>
+    <div class="step-item" id="step3"><div class="step-circle">3</div><div class="step-label">Payment</div></div>
+    <div class="step-connector" id="conn3"></div>
+    <div class="step-item" id="step4"><div class="step-circle">4</div><div class="step-label">Review</div></div>
+    <div class="step-connector" id="conn4"></div>
+    <div class="step-item" id="step5"><div class="step-circle">✓</div><div class="step-label">Done</div></div>
+  </div>
+
+  <div class="notice">
+    <span>ℹ️</span>
+    <div>Fields marked (*) are required · ช่อง (*) ต้องกรอก · (*) चिह्न अनिवार्य छ</div>
+  </div>
+
+  <!-- STEP 1: PARTICIPANTS -->
+  <!-- STEP 0: WHO IS REGISTERING -->
+  <div id="screenStep0">
+    <div class="section">
+      <div class="section-title">
+        <span class="section-icon">👥</span>
+        <div class="section-title-text">
+          <div class="main">Who is registering? · ใครที่จะสมัคร?</div>
+          <div class="sub">सहभागी प्रकार छान्नुहोस्</div>
+        </div>
+      </div>
+      <div class="payment-options">
+        <div class="payment-opt">
+          <input type="radio" name="whoType" id="who-self" value="self">
+          <label for="who-self">
+            <span class="p-emoji">🧒</span>
+            <span class="p-title">Myself</span>
+            <span class="p-sub">ตัวเอง · म आफैं</span>
+          </label>
+        </div>
+        <div class="payment-opt">
+          <input type="radio" name="whoType" id="who-group" value="group">
+          <label for="who-group">
+            <span class="p-emoji">👪</span>
+            <span class="p-title">Sakha / Upasakha</span>
+            <span class="p-sub">สาขา · शाखा/उपशाखा</span>
+          </label>
+        </div>
+      </div>
+      <button class="btn-primary" onclick="goToStep1()" style="margin-top:8px;">
+        ➡️ Continue · ดำเนินการต่อ · अगाडि बढ्नुहोस्
+      </button>
+    </div>
+  </div>
+
+  <div id="screenStep1" style="display:none;">
+    <div class="section">
+      <div class="section-title">
+        <span class="section-icon">📋</span>
+        <div class="section-title-text">
+          <div class="main">Participants · ผู้เข้าร่วม</div>
+          <div class="sub">सहभागीहरू · Bangkok Sakha Registration</div>
+        </div>
+      </div>
+      <div class="participants-list" id="participantsList"></div>
+      <button type="button" class="add-participant-btn" onclick="openAddModal()">
+        ➕ Add Participant · เพิ่มผู้เข้าร่วม · सहभागी थप्नुहोस्
+      </button>
+    </div>
+    <button class="btn-primary" onclick="goToPayment()">💳 Proceed to Payment · ไปชำระเงิน</button>
+    <button class="btn-secondary" onclick="goBackToStep0()">← Back · ย้อนกลับ</button>
+  </div>
+
+  <!-- STEP 2: PAYMENT -->
+  <div id="screenPayment" style="display:none;">
+
+    <!-- Payment Method Selection -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-icon">💳</span>
+        <div class="section-title-text">
+          <div class="main">Payment Method · วิธีชำระเงิน</div>
+          <div class="sub">भुक्तानी विधि</div>
+        </div>
+      </div>
+      <div class="payment-options">
+        <div class="payment-opt">
+          <input type="radio" name="payMethod" id="pay-qr" value="qr" onchange="handlePayMethod()">
+          <label for="pay-qr">
+            <span class="p-emoji">📱</span>
+            <span class="p-title">QR Pay</span>
+            <span class="p-sub">PromptPay / Bank Transfer</span>
+          </label>
+        </div>
+        <div class="payment-opt">
+          <input type="radio" name="payMethod" id="pay-cash" value="cash" onchange="handlePayMethod()">
+          <label for="pay-cash">
+            <span class="p-emoji">💵</span>
+            <span class="p-title">Offline Cash</span>
+            <span class="p-sub">Pay to Upasakha rep</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- QR Payment Section -->
+    <div class="qr-section" id="qrSection" style="display:none;">
+      <div class="qr-title">💳 Payment QR Code</div>
+      <div class="qr-sub">PromptPay / Bank Transfer · โอนเงินผ่าน PromptPay</div>
+      <div id="liveQrContainer" style="width:220px;height:220px;margin:0 auto 1rem;display:flex;align-items:center;justify-content:center;"></div>
+      <div class="qr-amount" id="totalAmount">฿ —</div>
+      <div class="upasakha-badge" id="qrUpasakhaBadge">— Upasakha —</div>
+      <div class="qr-note" id="qrNote">
+        🏦 Thai Nepali Association · Bangkok Sakha<br>
+        📌 K+ Bank · PromptPay<br><br>
+        After payment, upload slip below 🙏<br>
+        หลังโอนแล้วอัปโหลดสลิปด้านล่าง
+      </div>
+
+      <!-- Slip Upload -->
+      <div class="file-upload" id="paymentArea" style="margin-bottom:10px;">
+        <input type="file" id="paymentSlip" accept="image/*,.pdf" style="display:none" onchange="handleSlipUpload(this)">
+        <span class="upload-icon" id="slipIcon">📲</span>
+        <img id="slipPreview" class="slip-preview-img" alt="slip">
+        <div class="upload-text" id="paymentText">Upload Payment Slip *</div>
+        <div class="upload-sub">อัปโหลดสลิปโอนเงิน · भुक्तानी स्लिप</div>
+        <div class="upload-hint">JPG, PNG, PDF · Max 10MB</div>
+      </div>
+      <div class="upload-options" style="margin-bottom:16px;">
+        <label class="upload-opt-btn" for="paymentSlip">📁 Upload Slip</label>
+        <button type="button" class="upload-opt-btn" onclick="takeSlipPhoto()">📷 Take Photo</button>
+        <label class="upload-opt-btn" id="slipCamLabel" for="paymentSlipCam" style="display:none">📷 Take Photo</label>
+        <input type="file" id="paymentSlipCam" accept="image/*" capture="environment" style="display:none" onchange="handleSlipUpload(this)">
+      </div>
+      <div id="slipCameraContainer" style="display:none;margin-top:10px;text-align:center">
+        <video id="slipCameraVideo" style="width:100%;max-width:320px;border-radius:12px" autoplay playsinline></video>
+        <div style="margin-top:8px;display:flex;gap:8px;justify-content:center">
+          <button type="button" onclick="captureSlip()" class="upload-opt-btn" style="flex:0 0 auto;padding:10px 20px">📸 Capture</button>
+          <button type="button" onclick="closeSlipCamera()" class="upload-opt-btn" style="flex:0 0 auto;padding:10px 20px">✕ Cancel</button>
+        </div>
+        <canvas id="slipCanvas" style="display:none"></canvas>
+      </div>
+    </div>
+
+    <!-- Offline Cash Section -->
+    <div class="offline-section" id="offlineSection">
+      <div class="offline-title">💵 Offline Cash Payment</div>
+      <div class="offline-card">
+        <div class="offline-upasakha" id="offlineUpasakhaName">— Upasakha —</div>
+        <div class="offline-info" id="offlineInfo">
+          Please contact your <b>Upasakha representative</b> to make the cash payment.<br><br>
+          กรุณาติดต่อตัวแทนอุปสาขาของคุณเพื่อชำระเงินสด<br><br>
+          कृपया आफ्नो उपशाखा प्रतिनिधिलाई सम्पर्क गर्नुहोस्
+        </div>
+      </div>
+      <div class="qr-note" style="text-align:left;">
+        ℹ️ Your registration will be recorded. Please bring cash on the payment day.<br>
+        การลงทะเบียนของคุณจะถูกบันทึก กรุณานำเงินสดมาในวันชำระเงิน
+      </div>
+    </div>
+
+    <button class="btn-primary" onclick="goToReview()">👁️ Review &amp; Submit · ตรวจสอบและส่ง</button>
+    <button class="btn-secondary" onclick="goBackToStep1()">← Back · ย้อนกลับ</button>
+  </div>
+
+  <!-- STEP 3: REVIEW -->
+  <div id="screenReview" class="review-screen">
+    <div class="section">
+      <div class="section-title">
+        <span class="section-icon">✅</span>
+        <div class="section-title-text">
+          <div class="main">Review Your Information</div>
+          <div class="sub">ตรวจสอบข้อมูล · जानकारी जाँच गर्नुहोस्</div>
+        </div>
+      </div>
+      <div id="reviewContent"></div>
+    </div>
+    <button class="btn-primary" onclick="submitForm()" id="submitBtn">🚀 Submit Registration · ส่งการลงทะเบียน</button>
+    <button class="btn-secondary" onclick="goBackToPayment()">← Edit · แก้ไข</button>
+  </div>
+
+  <!-- SUCCESS -->
+  <div class="success-screen" id="successScreen">
+    <div class="success-icon">🎉</div>
+    <h2>Registration Successful!</h2>
+    <p>Your registration has been received.<br>ลงทะเบียนสำเร็จแล้ว ขอบคุณมาก<br>तपाईंको दर्ता प्राप्त भएको छ।</p>
+    <div id="successIds"></div>
+    <div style="font-size:12px;color:var(--text-muted);margin-bottom:20px;line-height:2;">🙏 Thank You · ขอบคุณ · धन्यवाद 🙏</div>
+    <button class="btn-green" id="waGroupBtn" onclick="joinWhatsApp()">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Join Upasakha WhatsApp Group
+    </button>
+  </div>
+
+</div>
+
+<div class="footer">
+  Thai Nepali Association · थाई नेपाली संघ · Bangkok Sakha<br>
+  Sivir (शिविर) Department · 8th Educational Camp 2026<br>
+  📍 Banse Camp, Ratchaburi, Thailand
+</div>
+
+<!-- PARTICIPANT MODAL -->
+<div class="modal-overlay" id="participantModal">
+  <div class="modal-sheet">
+    <div class="modal-header">
+      <h3 id="modalTitle">👤 Add Participant</h3>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+
+    <div class="field">
+      <label>Upasakha (Sub-branch) <span class="req">*</span> <span class="lsub">อุปสาขา · उपशाखा</span></label>
+      <select id="pUpasakha">
+        <option value="">Select Upasakha · เลือกอุปสาขา</option>
+        <option value="Phra Khanong">Phra Khanong</option>
+        <option value="Siripot/OnNut">Siripot / OnNut</option>
+        <option value="Silom">Silom</option>
+        <option value="Pratunam">Pratunam</option>
+        <option value="Si Yaek Bang Khae">Si Yaek Bang Khae</option>
+        <option value="Tha Phra">Tha Phra</option>
+        <option value="Khaosan">Khaosan</option>
+        <option value="Phahurat">Phahurat</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Full Name <span class="req">*</span> <span class="lsub">ชื่อ-นามสกุล · पूरा नाम</span></label>
+      <input type="text" id="pName" autocomplete="name" placeholder="e.g. Aarav Sharma">
+    </div>
+
+    <div class="field">
+      <label>Passport Size Photo <span class="req">*</span> <span class="lsub">รูปหน้าตรง</span></label>
+      <div style="text-align:center;margin-bottom:8px"><img id="pPhotoPreview" class="photo-preview" alt="preview"></div>
+      <div class="upload-options">
+        <label class="upload-opt-btn" for="pPhotoUpload">📁 Upload</label>
+        <input type="file" id="pPhotoUpload" accept="image/*" style="display:none" onchange="handlePhotoUpload(this)">
+        <button type="button" class="upload-opt-btn" onclick="takePPPhoto()">📷 Camera</button>
+        <label class="upload-opt-btn" for="pPhotoCam" style="display:none" id="pPhotoCamLabel">📷 Camera</label>
+        <input type="file" id="pPhotoCam" accept="image/*" capture="user" style="display:none" onchange="handlePhotoUpload(this)">
+      </div>
+      <div id="cameraContainer" style="display:none;margin-top:10px;text-align:center">
+        <video id="cameraVideo" style="width:100%;max-width:300px;border-radius:12px" autoplay playsinline></video>
+        <div style="margin-top:8px;display:flex;gap:8px;justify-content:center">
+          <button type="button" onclick="capturePhoto()" class="upload-opt-btn" style="flex:0 0 auto;padding:10px 20px">📸 Capture</button>
+          <button type="button" onclick="closeCamera()" class="upload-opt-btn" style="flex:0 0 auto;padding:10px 20px">✕ Cancel</button>
+        </div>
+        <canvas id="cameraCanvas" style="display:none"></canvas>
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label>Age <span class="req">*</span> <span class="lsub">อายุ · उमेर</span></label>
+        <input type="number" id="pAge" placeholder="e.g. 14" min="1" max="99">
+      </div>
+      <div class="field">
+        <label>ID/Passport No. <span class="req">*</span></label>
+        <input type="text" id="pIdNo" placeholder="e.g. AA1234567">
+      </div>
+    </div>
+
+    <div class="field">
+      <label>ID / Passport Photo <span class="req">*</span> <span class="lsub">ภาพถ่าย ID</span></label>
+      <div class="upload-options" style="margin-bottom:8px;">
+        <label class="upload-opt-btn" for="pIdPhoto">📁 Upload ID</label>
+        <button type="button" class="upload-opt-btn" onclick="takeIdPhoto()">📷 Camera</button>
+        <label class="upload-opt-btn" for="pIdPhotoCam" style="display:none" id="pIdPhotoCamLabel">📷 Camera</label>
+        <input type="file" id="pIdPhotoCam" accept="image/*" capture="environment" style="display:none" onchange="handleIdPhotoChange(this)">
+      </div>
+      <div class="file-upload" id="pIdPhotoArea" onclick="document.getElementById('pIdPhoto').click()">
+        <input type="file" id="pIdPhoto" accept="image/*,.pdf" style="display:none" onchange="handleIdPhotoChange(this)">
+        <span class="upload-icon" id="pIdPhotoIcon">🪪</span>
+        <img id="pIdPhotoPreview" style="display:none;max-width:100%;max-height:160px;border-radius:10px;margin:8px auto;border:2px solid var(--green);object-fit:contain;" alt="ID">
+        <div class="upload-text" id="pIdPhotoText">Click to upload ID Photo</div>
+        <div class="upload-sub">อัปโหลดรูป ID/Passport · ID फोटो</div>
+        <div class="upload-hint">JPG, PNG, PDF · Max 10MB</div>
+      </div>
+      <div id="idCameraContainer" style="display:none;margin-top:10px;text-align:center">
+        <video id="idCameraVideo" style="width:100%;max-width:300px;border-radius:12px" autoplay playsinline></video>
+        <div style="margin-top:8px;display:flex;gap:8px;justify-content:center">
+          <button type="button" onclick="captureIdPhoto()" class="upload-opt-btn" style="flex:0 0 auto;padding:10px 20px">📸 Capture</button>
+          <button type="button" onclick="closeIdCamera()" class="upload-opt-btn" style="flex:0 0 auto;padding:10px 20px">✕ Cancel</button>
+        </div>
+        <canvas id="idCameraCanvas" style="display:none"></canvas>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Health Note <span class="lsub">หมายเหตุสุขภาพ · स्वास्थ्य नोट</span></label>
+      <textarea id="pNote" placeholder="Medicine, allergy, health condition..."></textarea>
+    </div>
+
+    <div class="modal-divider">📞 Contact Information · ข้อมูลติดต่อ
+      <button type="button" id="sameAsPrevBtn" onclick="fillSameAsPrev()" style="display:none;margin-left:10px;padding:4px 12px;background:var(--blue-light);color:var(--blue);border:1.5px solid var(--blue);border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;">
+        ↩ Same as previous
+      </button>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label>Parent's Name <span class="req">*</span></label>
+        <input type="text" id="pParentName" autocomplete="name" placeholder="e.g. Ram Sharma">
+      </div>
+      <div class="field">
+        <label>Phone <span class="req">*</span></label>
+        <input type="tel" id="pPhone" autocomplete="tel" placeholder="e.g. 081-234-5678">
+      </div>
+    </div>
+    <div class="field">
+      <label>Address <span class="req">*</span></label>
+      <input type="text" id="pAddress" autocomplete="street-address" placeholder="e.g. Sukhumvit, Bangkok">
+    </div>
+
+    <button type="button" class="btn-primary" onclick="saveParticipant()" id="modalSaveBtn" style="margin-top:8px">
+      ✅ Add Participant · เพิ่มผู้เข้าร่วม
+    </button>
+  </div>
+</div>
+
+<!-- WA FAB -->
+<div class="wa-fab">
+  <button class="wa-fab-btn" onclick="toggleWaPopup()">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </button>
+</div>
+<div class="wa-popup" id="waPopup">
+  <button class="wa-popup-close" onclick="toggleWaPopup()">✕</button>
+  <div class="wa-popup-header">
+    <div class="wa-popup-avatar">🙏</div>
+    <div><div class="wa-popup-name">Sivir Help</div><div class="wa-popup-status">● Online</div></div>
+  </div>
+  <div class="wa-popup-msg">Hello! 🙏 Need help with registration?<br>ต้องการความช่วยเหลือไหม?</div>
+  <div>
+    <a href="https://chat.whatsapp.com/Cwv93Xhn5M73ZfOFPnJMyy" target="_blank" style="text-decoration:none">
+      <button class="wa-popup-btn">💬 Get Help</button>
+    </a>
+  </div>
+</div>
+
+<div id="ytContainer" style="position:fixed;bottom:-200px;right:-200px;width:1px;height:1px;overflow:hidden"><div id="ytPlayerDiv"></div></div>
+
+<script>
+// ── UPASAKHA CONFIG ──
+var UPASAKHA_CONFIG = {
+  'Phra Khanong':      { prefix:'PKN', waGroup:'https://chat.whatsapp.com/PLACEHOLDER_PKN',  waGroupId:'PLACEHOLDER_PKN_ID@g.us'  },
+  'Siripot/OnNut':     { prefix:'SRP', waGroup:'https://chat.whatsapp.com/PLACEHOLDER_SRP',  waGroupId:'PLACEHOLDER_SRP_ID@g.us'  },
+  'Silom':             { prefix:'SLM', waGroup:'https://chat.whatsapp.com/PLACEHOLDER_SLM',  waGroupId:'PLACEHOLDER_SLM_ID@g.us'  },
+  'Pratunam':          { prefix:'PTN', waGroup:'https://chat.whatsapp.com/PLACEHOLDER_PTN',  waGroupId:'PLACEHOLDER_PTN_ID@g.us'  },
+  'Si Yaek Bang Khae': { prefix:'SYB', waGroup:'https://chat.whatsapp.com/PLACEHOLDER_SYB',  waGroupId:'PLACEHOLDER_SYB_ID@g.us'  },
+  'Tha Phra':          { prefix:'THP', waGroup:'https://chat.whatsapp.com/PLACEHOLDER_THP',  waGroupId:'PLACEHOLDER_THP_ID@g.us'  },
+  'Khaosan':           { prefix:'KHS', waGroup:'https://chat.whatsapp.com/PLACEHOLDER_KHS',  waGroupId:'PLACEHOLDER_KHS_ID@g.us'  },
+  'Phahurat':          { prefix:'PHR', waGroup:'https://chat.whatsapp.com/PLACEHOLDER_PHR',  waGroupId:'PLACEHOLDER_PHR_ID@g.us'  }
+};
+
+var UPASAKHA_CONTACT = {
+  'Phra Khanong':      { contact:'Phra Khanong Representative', phone:'UPDATE_PHONE', line:'UPDATE_LINE' },
+  'Siripot/OnNut':     { contact:'Siripot/OnNut Representative', phone:'UPDATE_PHONE', line:'UPDATE_LINE' },
+  'Silom':             { contact:'Silom Representative', phone:'UPDATE_PHONE', line:'UPDATE_LINE' },
+  'Pratunam':          { contact:'Pratunam Representative', phone:'UPDATE_PHONE', line:'UPDATE_LINE' },
+  'Si Yaek Bang Khae': { contact:'Si Yaek Bang Khae Representative', phone:'UPDATE_PHONE', line:'UPDATE_LINE' },
+  'Tha Phra':          { contact:'Tha Phra Representative', phone:'UPDATE_PHONE', line:'UPDATE_LINE' },
+  'Khaosan':           { contact:'Khaosan Representative', phone:'UPDATE_PHONE', line:'UPDATE_LINE' },
+  'Phahurat':          { contact:'Phahurat Representative', phone:'UPDATE_PHONE', line:'UPDATE_LINE' }
+};
+
+var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx_v_3k-dxQCv530dOW41qxJ4yj0esz-7Uw13kI8ofpGVNigCE8hTZKw_ciQXx14rpI/exec';
+
+// ── YOUTUBE MUSIC ──
+var ytPlayer, musicPlaying = false;
+function onYouTubeIframeAPIReady(){
+  ytPlayer = new YT.Player('ytPlayerDiv',{height:'1',width:'1',videoId:'0TPa2KvAdPc',
+    playerVars:{autoplay:1,loop:1,playlist:'0TPa2KvAdPc',controls:0,mute:0},
+    events:{onReady:function(e){e.target.setVolume(50);e.target.playVideo();musicPlaying=true;document.getElementById('musicToggle').textContent='⏸';}}});
+}
+var tag=document.createElement('script');tag.src="https://www.youtube.com/iframe_api";
+document.getElementsByTagName('script')[0].parentNode.insertBefore(tag,document.getElementsByTagName('script')[0]);
+function toggleMusic(){
+  if(!ytPlayer)return;
+  if(musicPlaying){ytPlayer.pauseVideo();musicPlaying=false;document.getElementById('musicToggle').textContent='▶';document.getElementById('musicWave').classList.add('paused');}
+  else{ytPlayer.playVideo();musicPlaying=true;document.getElementById('musicToggle').textContent='⏸';document.getElementById('musicWave').classList.remove('paused');}
+}
+
+// ── STATE ──
+var participants=[], currentPhotoData=null, currentIdPhotoData=null;
+var sessionUpasakha = ''; // locked after first participant
+var sessionContact = { parentName:'', phone:'', address:'' }; // last used contact
+var cameraStream=null, idCameraStream=null, slipCameraStream=null;
+var editingIndex=-1, slipData=null, slipFile=null;
+
+// ── STEPS ──
+function setStep(n){
+  for(var i=1;i<=5;i++){
+    var el=document.getElementById('step'+i);
+    if(!el)continue;
+    el.classList.remove('active','done');
+    if(i<n)el.classList.add('done');
+    if(i===n)el.classList.add('active');
+    var c=document.getElementById('conn'+i);
+    if(c){c.classList.remove('done');if(i<n)c.classList.add('done');}
+  }
+}
+
+function goToStep1(){
+  var who=document.querySelector('input[name=whoType]:checked');
+  if(!who){alert('Please select who is registering!');return;}
+  document.getElementById('screenStep0').style.display='none';
+  document.getElementById('screenStep1').style.display='block';
+  setStep(2);
+  if(participants.length===0)openAddModal();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function goBackToStep0(){
+  document.getElementById('screenStep1').style.display='none';
+  document.getElementById('screenStep0').style.display='block';
+  setStep(1);
+}
+
+function getFeePerPerson(upa) {
+  return upa === 'Phra Khanong' ? 1800 : 1700;
+}
+function getTransportFee(upa) {
+  return upa === 'Phra Khanong' ? 300 : 200;
+}
+
+function goToPayment(){
+  if(participants.length===0){alert('Please add at least one participant!');return;}
+  var upa = participants[0].upasakha || '';
+  document.getElementById('screenStep1').style.display='none';
+  document.getElementById('screenPayment').style.display='block';
+  setStep(3);
+  document.getElementById('qrUpasakhaBadge').textContent = upa ? 'Bangkok · '+upa : 'Bangkok Sakha';
+  document.getElementById('offlineUpasakhaName').textContent = upa || 'Bangkok Sakha';
+  var n = participants.length;
+  var perPerson = getFeePerPerson(upa);
+  var transport = getTransportFee(upa);
+  var total = n * perPerson;
+  document.getElementById('totalAmount').innerHTML =
+    '<div style="font-size:14px;color:var(--text-muted);margin-bottom:2px;">Registration: ฿1,500 × '+n+' = <b>฿'+(n*1500).toLocaleString()+'</b></div>'+
+    '<div style="font-size:14px;color:var(--text-muted);margin-bottom:8px;">Transport: ฿'+transport+' × '+n+' = <b>฿'+(n*transport).toLocaleString()+'</b></div>'+
+    '<div style="font-size:26px;font-weight:800;color:var(--gold);">Total: ฿'+total.toLocaleString()+'</div>';
+  // Update QR note with upasakha info
+  document.getElementById('qrNote').innerHTML =
+    '🏦 Thai Nepali Association · Bangkok Sakha<br>'+
+    '📍 Upasakha: <b>'+upa+'</b><br>'+
+    '📌 K+ Bank · PromptPay<br><br>'+
+    'After payment, upload slip below 🙏<br>'+
+    'หลังโอนแล้วอัปโหลดสลิปด้านล่าง';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function goBackToStep1(){
+  document.getElementById('screenPayment').style.display='none';
+  document.getElementById('screenStep1').style.display='block';
+  setStep(2);
+}
+
+function handlePayMethod(){
+  var method = document.querySelector('input[name="payMethod"]:checked');
+  if(!method)return;
+  if(method.value==='qr'){
+    document.getElementById('qrSection').style.display='block';
+    document.getElementById('offlineSection').style.display='none';
+    // Generate QR
+    var upa = participants.length>0?participants[0].upasakha:'';
+    var fee = participants.length * getFeePerPerson(upa);
+    generatePromptPayQR(fee);
+  } else {
+    document.getElementById('qrSection').style.display='none';
+    document.getElementById('offlineSection').style.display='block';
+    // Update offline section with upasakha contact
+    var cashUpa2 = participants.length>0?participants[0].upasakha:'';
+    var cashInfo2 = UPASAKHA_CONTACT[cashUpa2]||{contact:'Representative',phone:'TBD',line:'TBD'};
+    document.getElementById('offlineUpasakhaName').textContent = cashUpa2 + ' Upasakha';
+    document.getElementById('offlineInfo').innerHTML =
+      '👤 <b>'+cashInfo2.contact+'</b><br>'+
+      '📞 '+cashInfo2.phone+'<br>'+
+      '💬 Line: '+cashInfo2.line+'<br><br>'+
+      'Please contact to arrange cash payment.<br>'+
+      'กรุณาติดต่อเพื่อชำระเงินสด<br>'+
+      'कृपया नगद भुक्तानीको लागि सम्पर्क गर्नुहोस्';
+  }
+}
+
+function goToReview(){
+  var method = document.querySelector('input[name="payMethod"]:checked');
+  if(!method){alert('Please select a payment method!');return;}
+  if(method.value==='qr' && !slipData && !slipFile){
+    alert('Please upload payment slip! · กรุณาอัปโหลดสลิป!');return;
+  }
+  buildReview();
+  document.getElementById('screenPayment').style.display='none';
+  document.getElementById('screenReview').style.display='block';
+  setStep(4);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function goBackToPayment(){
+  document.getElementById('screenReview').style.display='none';
+  document.getElementById('screenPayment').style.display='block';
+  setStep(3);
+}
+
+function buildReview(){
+  var html='';
+  var payMethod = (document.querySelector('input[name="payMethod"]:checked')||{}).value||'qr';
+  participants.forEach(function(p,i){
+    html+='<div class="review-card"><h3>👤 Participant '+(i+1)+'</h3>';
+    html+='<div class="review-row"><span class="lbl">Upasakha · อุปสาขา · उपशाखा</span><span class="val">'+p.upasakha+'</span></div>';
+    html+='<div class="review-row"><span class="lbl">Name · ชื่อ · नाम</span><span class="val">'+p.name+'</span></div>';
+    html+='<div class="review-row"><span class="lbl">Age · อายุ · उमेर</span><span class="val">'+p.age+'</span></div>';
+    html+='<div class="review-row"><span class="lbl">ID/Passport · หมายเลข · नम्बर</span><span class="val">'+p.idNo+'</span></div>';
+    if(p.note)html+='<div class="review-row"><span class="lbl">Health · สุขภาพ · स्वास्थ्य</span><span class="val">'+p.note+'</span></div>';
+    html+='<div class="review-row"><span class="lbl">Parent · ผู้ปกครอง · अभिभावक</span><span class="val">'+p.parentName+'</span></div>';
+    html+='<div class="review-row"><span class="lbl">Phone · โทร · फोन</span><span class="val">'+p.phone+'</span></div>';
+    html+='<div class="review-row"><span class="lbl">Address · ที่อยู่ · ठेगाना</span><span class="val">'+p.address+'</span></div>';
+    if(p.photo)html+='<div class="review-row"><span class="lbl">Photo · รูป · फोटो</span><span class="val"><img src="'+p.photo+'" style="width:50px;height:50px;border-radius:50%;object-fit:cover;border:2px solid var(--pink)"></span></div>';
+    if(p.idPhotoData)html+='<div class="review-row"><span class="lbl">ID Photo · รูป ID · ID फोटो</span><span class="val"><img src="'+p.idPhotoData+'" style="max-width:80px;max-height:50px;border-radius:6px;border:2px solid var(--blue)"></span></div>';
+    html+='</div>';
+  });
+  html+='<div class="review-card"><h3>💳 Payment</h3>';
+  html+='<div class="review-row"><span class="lbl">Method</span><span class="val">'+( payMethod==='qr'?'QR Pay (PromptPay)':'Offline Cash')+'</span></div>';
+  var rUpa = participants.length>0?participants[0].upasakha:'';
+  var rPer = getFeePerPerson(rUpa);
+  var rTrans = getTransportFee(rUpa);
+  var rTotal = participants.length * rPer;
+  html+='<div class="review-row"><span class="lbl">Reg Fee</span><span class="val">฿'+(participants.length*1500).toLocaleString()+'</span></div>';
+  html+='<div class="review-row"><span class="lbl">Transport</span><span class="val">฿'+(participants.length*rTrans).toLocaleString()+'</span></div>';
+  html+='<div class="review-row"><span class="lbl">Total</span><span class="val" style="color:var(--gold);font-size:16px;font-weight:800;">฿'+rTotal.toLocaleString()+'</span></div>';
+  if(slipData)html+='<div class="review-row"><span class="lbl">Slip</span><span class="val"><img src="'+slipData+'" style="max-width:120px;border-radius:8px;border:2px solid var(--green)"></span></div>';
+  html+='</div>';
+  document.getElementById('reviewContent').innerHTML=html;
+}
+
+// ── UNIQUE ID GENERATION ──
+function generateUniqueId(upasakha, index) {
+  var cfg = UPASAKHA_CONFIG[upasakha] || {prefix:'BKK'};
+  var num = String(index+1).padStart(3,'0');
+  return cfg.prefix + num;
+}
+
+// ── MODAL ──
+function resetModal(){
+  ['pName','pIdNo','pParentName','pPhone','pAddress','pNote'].forEach(function(id){document.getElementById(id).value='';});
+  document.getElementById('pAge').value='';
+  document.getElementById('pUpasakha').value='';
+  document.getElementById('pPhotoPreview').style.display='none';
+  document.getElementById('pIdPhotoPreview').style.display='none';
+  document.getElementById('pIdPhotoIcon').style.display='block';
+  document.getElementById('pIdPhotoText').textContent='Click to upload ID Photo';
+  document.getElementById('pIdPhotoArea').classList.remove('has-file');
+  currentPhotoData=null;currentIdPhotoData=null;
+}
+
+function openAddModal(){
+  editingIndex=-1;resetModal();
+  // Pre-fill upasakha from session if already set
+  if(sessionUpasakha){
+    document.getElementById('pUpasakha').value=sessionUpasakha;
+    document.getElementById('pUpasakha').disabled=false;
+  }
+  // Show "Same as previous" button if there are already participants
+  var btn = document.getElementById('sameAsPrevBtn');
+  if(participants.length > 0 && sessionContact.parentName){
+    btn.style.display='inline-block';
+    btn.textContent='↩ Same as ' + sessionContact.parentName;
+  } else {
+    btn.style.display='none';
+  }
+  document.getElementById('modalSaveBtn').textContent='✅ Add Participant · เพิ่มผู้เข้าร่วม';
+  document.getElementById('modalTitle').textContent='👤 Add Participant';
+  document.getElementById('participantModal').classList.add('active');
+  document.body.style.overflow='hidden';
+}
+
+function openEditModal(i){
+  editingIndex=i;resetModal();
+  var p=participants[i];
+  document.getElementById('pUpasakha').value=p.upasakha||'';;
+  document.getElementById('pName').value=p.name;
+  document.getElementById('pAge').value=p.age;
+  document.getElementById('pIdNo').value=p.idNo;
+  document.getElementById('pNote').value=p.note||'';
+  document.getElementById('pParentName').value=p.parentName||'';
+  document.getElementById('pPhone').value=p.phone||'';
+  document.getElementById('pAddress').value=p.address||'';
+  if(p.photo){document.getElementById('pPhotoPreview').src=p.photo;document.getElementById('pPhotoPreview').style.display='block';currentPhotoData=p.photo;}
+  if(p.idPhotoData){document.getElementById('pIdPhotoPreview').src=p.idPhotoData;document.getElementById('pIdPhotoPreview').style.display='block';document.getElementById('pIdPhotoIcon').style.display='none';document.getElementById('pIdPhotoText').textContent='✓ ID Photo loaded';document.getElementById('pIdPhotoArea').classList.add('has-file');currentIdPhotoData=p.idPhotoData;}
+  document.getElementById('modalSaveBtn').textContent='💾 Update Participant';
+  document.getElementById('modalTitle').textContent='✏️ Edit Participant';
+  document.getElementById('participantModal').classList.add('active');
+  document.body.style.overflow='hidden';
+}
+
+function closeModal(){document.getElementById('participantModal').classList.remove('active');document.body.style.overflow='';closeCamera();closeIdCamera();}
+
+function fillSameAsPrev(){
+  document.getElementById('pParentName').value = sessionContact.parentName;
+  document.getElementById('pPhone').value = sessionContact.phone;
+  document.getElementById('pAddress').value = sessionContact.address;
+}
+
+function saveParticipant(){
+  var upa=document.getElementById('pUpasakha').value;
+  var name=document.getElementById('pName').value.trim();
+  var age=document.getElementById('pAge').value.trim();
+  var idNo=document.getElementById('pIdNo').value.trim();
+  var note=document.getElementById('pNote').value.trim();
+  var parentName=document.getElementById('pParentName').value.trim();
+  var phone=document.getElementById('pPhone').value.trim();
+  var address=document.getElementById('pAddress').value.trim();
+  if(!upa){alert('Please select Upasakha!');return;}
+  if(!name||!age||!idNo){alert('Name, Age and ID are required!');return;}
+  if(!currentPhotoData){alert('Passport photo is required!');return;}
+  if(!parentName||!phone||!address){alert('Parent name, phone and address are required!');return;}
+
+  // If upasakha changed from session, update ALL existing participants
+  if(sessionUpasakha && upa !== sessionUpasakha){
+    if(participants.length > 0){
+      var msg = 'Changing Upasakha to ' + upa + '. All ' + participants.length + ' participant(s) will be updated. Continue?';
+      if(!confirm(msg)) return;
+    }
+    // Update all existing participants to new upasakha
+    participants.forEach(function(p){ p.upasakha = upa; });
+  }
+  // Set session upasakha
+  sessionUpasakha = upa;
+
+  var entry={upasakha:upa,name:name,age:age,idNo:idNo,note:note,parentName:parentName,phone:phone,address:address,photo:currentPhotoData,idPhotoData:currentIdPhotoData};
+  if(editingIndex>=0){participants[editingIndex]=entry;}else{participants.push(entry);}
+  // Save contact for "same as previous" feature
+  sessionContact = { parentName:parentName, phone:phone, address:address };
+  renderParticipants();
+  closeModal();
+}
+
+function renderParticipants(){
+  var list=document.getElementById('participantsList');list.innerHTML='';
+  participants.forEach(function(p,i){
+    var div=document.createElement('div');div.className='participant-card';
+    div.innerHTML='<div class="participant-card-info">'+
+      '<div class="participant-card-name">'+p.name+'</div>'+
+      '<div class="participant-card-meta">Age: '+p.age+' · '+p.upasakha+' · ID: '+p.idNo+'</div>'+
+      '<div class="participant-card-meta" style="font-size:11px;">📞 '+p.phone+' · '+p.address+'</div>'+
+    '</div>'+
+    '<div class="participant-card-actions">'+
+      '<button class="participant-card-edit" onclick="openEditModal('+i+')">✏️</button>'+
+      '<button class="participant-card-remove" onclick="removeParticipant('+i+')">🗑️</button>'+
+    '</div>';
+    list.appendChild(div);
+  });
+}
+
+function removeParticipant(i){if(confirm('Remove this participant?')){participants.splice(i,1);if(participants.length===0)sessionUpasakha='';renderParticipants();}}
+
+// ── PHOTOS ──
+function isMobile(){return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);}
+function handlePhotoUpload(input){if(input.files&&input.files[0]){var r=new FileReader();r.onload=function(e){currentPhotoData=e.target.result;var p=document.getElementById('pPhotoPreview');p.src=currentPhotoData;p.style.display='block';};r.readAsDataURL(input.files[0]);}}
+function takePPPhoto(){if(isMobile()){document.getElementById('pPhotoCam').click();}else{navigator.mediaDevices.getUserMedia({video:{facingMode:'user'},audio:false}).then(function(s){cameraStream=s;document.getElementById('cameraVideo').srcObject=s;document.getElementById('cameraContainer').style.display='block';}).catch(function(){alert('Camera denied. Please use Upload.');});}}
+function capturePhoto(){var v=document.getElementById('cameraVideo'),c=document.getElementById('cameraCanvas');c.width=v.videoWidth;c.height=v.videoHeight;c.getContext('2d').drawImage(v,0,0);currentPhotoData=c.toDataURL('image/jpeg',0.85);var p=document.getElementById('pPhotoPreview');p.src=currentPhotoData;p.style.display='block';closeCamera();}
+function closeCamera(){if(cameraStream){cameraStream.getTracks().forEach(function(t){t.stop();});cameraStream=null;}document.getElementById('cameraContainer').style.display='none';}
+function takeIdPhoto(){if(isMobile()){document.getElementById('pIdPhotoCam').click();}else{navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'},audio:false}).then(function(s){idCameraStream=s;document.getElementById('idCameraVideo').srcObject=s;document.getElementById('idCameraContainer').style.display='block';}).catch(function(){alert('Camera denied. Please use Upload.');});}}
+function captureIdPhoto(){var v=document.getElementById('idCameraVideo'),c=document.getElementById('idCameraCanvas');c.width=v.videoWidth;c.height=v.videoHeight;c.getContext('2d').drawImage(v,0,0);currentIdPhotoData=c.toDataURL('image/jpeg',0.85);var prev=document.getElementById('pIdPhotoPreview');prev.src=currentIdPhotoData;prev.style.display='block';document.getElementById('pIdPhotoIcon').style.display='none';document.getElementById('pIdPhotoText').textContent='✓ Photo captured';document.getElementById('pIdPhotoArea').classList.add('has-file');closeIdCamera();}
+function closeIdCamera(){if(idCameraStream){idCameraStream.getTracks().forEach(function(t){t.stop();});idCameraStream=null;}document.getElementById('idCameraContainer').style.display='none';}
+function handleIdPhotoChange(input){var area=document.getElementById('pIdPhotoArea'),textEl=document.getElementById('pIdPhotoText'),preview=document.getElementById('pIdPhotoPreview'),icon=document.getElementById('pIdPhotoIcon');if(input.files&&input.files[0]){var file=input.files[0];textEl.textContent='✓ '+(file.name.length>28?file.name.substring(0,25)+'...':file.name);area.classList.add('has-file');if(file.type.startsWith('image/')){var r=new FileReader();r.onload=function(e){currentIdPhotoData=e.target.result;preview.src=e.target.result;preview.style.display='block';icon.style.display='none';};r.readAsDataURL(file);}else{currentIdPhotoData=null;}}}
+
+// ── SLIP ──
+function handleSlipUpload(input){if(input.files&&input.files[0]){var file=input.files[0];slipFile=file;document.getElementById('paymentText').textContent='✓ '+(file.name.length>28?file.name.substring(0,25)+'...':file.name);document.getElementById('paymentArea').classList.add('has-file');if(file.type.startsWith('image/')){var r=new FileReader();r.onload=function(e){slipData=e.target.result;var p=document.getElementById('slipPreview');p.src=slipData;p.style.display='block';document.getElementById('slipIcon').style.display='none';};r.readAsDataURL(file);}}}
+function takeSlipPhoto(){if(isMobile()){document.getElementById('paymentSlipCam').click();}else{navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'},audio:false}).then(function(s){slipCameraStream=s;document.getElementById('slipCameraVideo').srcObject=s;document.getElementById('slipCameraContainer').style.display='block';}).catch(function(){alert('Camera denied. Please use Upload.');});}}
+function captureSlip(){var v=document.getElementById('slipCameraVideo'),c=document.getElementById('slipCanvas');c.width=v.videoWidth;c.height=v.videoHeight;c.getContext('2d').drawImage(v,0,0);slipData=c.toDataURL('image/jpeg',0.9);slipFile=null;var p=document.getElementById('slipPreview');p.src=slipData;p.style.display='block';document.getElementById('slipIcon').style.display='none';document.getElementById('paymentText').textContent='✓ Photo captured';document.getElementById('paymentArea').classList.add('has-file');closeSlipCamera();}
+function closeSlipCamera(){if(slipCameraStream){slipCameraStream.getTracks().forEach(function(t){t.stop();});slipCameraStream=null;}document.getElementById('slipCameraContainer').style.display='none';}
+
+// ── PROMPTPAY QR ──
+function crc16(str){var crc=0xFFFF;for(var i=0;i<str.length;i++){crc^=str.charCodeAt(i)<<8;for(var j=0;j<8;j++){if(crc&0x8000){crc=(crc<<1)^0x1021;}else{crc<<=1;}crc&=0xFFFF;}}return crc.toString(16).toUpperCase().padStart(4,'0');}
+function buildPromptPayPayload(amount){var phone='0066637915003';var merchant='0016A000000677010111'+'01'+String(phone.length).padStart(2,'0')+phone;var payload='000201';payload+='010212';payload+='29'+String(merchant.length).padStart(2,'0')+merchant;payload+='5303764';var amtStr=amount.toFixed(2);payload+='54'+String(amtStr.length).padStart(2,'0')+amtStr;payload+='5802TH';payload+='6304';payload+=crc16(payload);return payload;}
+function generatePromptPayQR(amount){var container=document.getElementById('liveQrContainer');if(!container)return;var payload=buildPromptPayPayload(amount);var attempts=0;var tryRender=function(){if(typeof QRCode!=='undefined'){container.innerHTML='';try{new QRCode(container,{text:payload,width:220,height:220,colorDark:'#000000',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M});}catch(err){showFallbackQR(container,payload);}}else if(attempts<15){attempts++;setTimeout(tryRender,300);}else{showFallbackQR(container,payload);}};tryRender();}
+function showFallbackQR(container,payload){container.innerHTML='';var img=document.createElement('img');img.src='https://api.qrserver.com/v1/create-qr-code/?size=220x220&data='+encodeURIComponent(payload);img.style.cssText='width:220px;height:220px;border-radius:12px;border:2px solid #eee;display:block;';container.appendChild(img);}
+
+// ── WHATSAPP ──
+function toggleWaPopup(){document.getElementById('waPopup').classList.toggle('active');}
+setTimeout(function(){document.getElementById('waPopup').classList.add('active');},8000);
+
+function joinWhatsApp(){
+  var upa = participants.length>0?participants[0].upasakha:'';
+  var cfg = UPASAKHA_CONFIG[upa]||{waGroup:'https://chat.whatsapp.com/Cwv93Xhn5M73ZfOFPnJMyy'};
+  // Build message with all data
+  var msg='🎉 *Sivir 2026 Registration — Bangkok Sakha*\n';
+  msg+='━━━━━━━━━━━━━━━━\n';
+  msg+='📍 *Upasakha:* '+upa+'\n';
+  msg+='💳 *Payment:* '+(document.querySelector('input[name="payMethod"]:checked')||{value:''}).value==='qr'?'QR Pay':'Offline Cash';
+  msg+='\n👥 *Participants:* '+participants.length+'\n';
+  var wUpa=participants.length>0?participants[0].upasakha:'';
+  var wFee=participants.length*getFeePerPerson(wUpa);
+  msg+='💰 *Total:* ฿'+wFee.toLocaleString()+'\n';
+  msg+='━━━━━━━━━━━━━━━━\n';
+  participants.forEach(function(p,i){
+    msg+='\n🆔 *ID: '+p.uniqueId+'*\n';
+    msg+='👤 '+p.name+' | Age: '+p.age+'\n';
+    msg+='🪪 '+p.idNo+'\n';
+    if(p.note)msg+='📝 '+p.note+'\n';
+    msg+='👨‍👩‍👦 '+p.parentName+' | 📞 '+p.phone+'\n';
+    msg+='🏠 '+p.address+'\n';
+  });
+  msg+='━━━━━━━━━━━━━━━━\n✅ '+new Date().toLocaleString('th-TH');
+  // Open group
+  window.open(cfg.waGroup,'_blank');
+  setTimeout(function(){window.open('https://wa.me/66943438424?text='+encodeURIComponent(msg),'_blank');},1500);
+}
+
+// ── SUBMIT ──
+function dataUrlToB64(d){if(!d)return '';return d.indexOf(',')>-1?d.split(',')[1]:d;}
+function fileToBase64(file){return new Promise(function(resolve,reject){if(!file){resolve(null);return;}var r=new FileReader();r.onload=function(){resolve(r.result.split(',')[1]);};r.onerror=reject;r.readAsDataURL(file);});}
+
+async function submitForm(){
+  var btn=document.getElementById('submitBtn'),overlay=document.getElementById('loadingOverlay');
+  btn.disabled=true;overlay.classList.add('active');
+  try{
+    var whoType=(document.querySelector('input[name="whoType"]:checked')||{}).value||'group';
+    var upa = participants.length>0?participants[0].upasakha:'Unknown';
+    var sheetTabOverride = whoType==='self'?'Individual':null;
+    var cfg = UPASAKHA_CONFIG[upa]||{prefix:'BKK'};
+    var payMethod = (document.querySelector('input[name="payMethod"]:checked')||{}).value||'cash';
+    var fee = participants.length * getFeePerPerson(upa);
+    var submittedAt = new Date().toLocaleString('th-TH');
+    var sheetTab = sheetTabOverride || (upa + ' Upasakha');
+
+    // STEP A: Text data
+    var textPayload = {
+      type:'text_data', sheetTab:sheetTab,
+      sakha:'Bangkok', upasakha:upa,
+      paymentMethod:payMethod,
+      parentName:participants[0].parentName||''  ,
+      phone:participants[0].phone||'',
+      address:participants[0].address||'',
+      totalParticipants:participants.length,
+      totalFee:fee, submittedAt:submittedAt,
+      participants:participants.map(function(p){
+        return{uniqueId:p.uniqueId,name:p.name,age:p.age,idNo:p.idNo,note:p.note||'',upasakha:p.upasakha};
+      })
+    };
+    await fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(textPayload)});
+
+    // STEP B: Payment slip (QR only)
+    if(payMethod==='qr'){
+      var slipB64=slipFile?await fileToBase64(slipFile):dataUrlToB64(slipData);
+      if(slipB64){
+        await fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},
+          body:JSON.stringify({type:'payment_slip',sheetTab:sheetTab,upasakha:upa,parentName:participants[0].parentName||'',paymentSlipName:'slip.jpg',paymentSlipData:slipB64,totalFee:fee})});
+      }
+    }
+
+    // STEP C: Photos per participant
+    for(var pi=0;pi<participants.length;pi++){
+      var p=participants[pi];
+      var ppB64=dataUrlToB64(p.photo||'');
+      var idB64=dataUrlToB64(p.idPhotoData||'');
+      if(ppB64||idB64){
+        await fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},
+          body:JSON.stringify({type:'participant_photos',sheetTab:sheetTab,upasakha:upa,parentName:participants[0].parentName||'',participantIndex:pi,participantName:p.name||'',uniqueId:p.uniqueId,passportPhotoData:ppB64,idPhotoData:idB64})});
+      }
+    }
+
+    // Show success
+    document.getElementById('screenReview').style.display='none';
+    document.getElementById('successScreen').style.display='block';
+    setStep(5);
+
+    document.getElementById('successIds').innerHTML='';
+
+    // Update WA button label
+    document.getElementById('waGroupBtn').innerHTML='<svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Join '+upa+' WhatsApp Group';
+
+    window.scrollTo({top:0,behavior:'smooth'});
+  }catch(err){alert('Registration failed. Please try again.\nError: '+err.message);btn.disabled=false;}
+  finally{overlay.classList.remove('active');}
+}
+
+document.getElementById('participantModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+window.addEventListener('beforeunload',function(e){e.preventDefault();e.returnValue='';});
+</script>
+</body>
+</html>
